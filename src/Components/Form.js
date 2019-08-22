@@ -8,7 +8,8 @@ const UserForm = ({errors, touched, values}) => {
         <div>,
             <header>New Users</header>
             <Form>
-                <Field name='name' placeholder='Name' type='text'/> {
+                <Field name='name' placeholder='Name' type='text'/> 
+                {/* form validation */}{
                 touched.name && errors.name && (
                     <p className='error'>
                         {
@@ -16,8 +17,8 @@ const UserForm = ({errors, touched, values}) => {
                     }</p>
                 )
             }
-                <Field name='email' placeholder='e-mail' type='email'/> {/* form validation */}
-                {
+                <Field name='email' placeholder='e-mail' type='email'/> 
+                {/* form validation */}{
                 touched.email && errors.email && (
                     <p className='error'>
                         {
@@ -25,7 +26,8 @@ const UserForm = ({errors, touched, values}) => {
                     }</p>
                 )
             }
-                <Field name='password' placeholder='password' type='text'/> {
+                <Field name='password' placeholder='password' type='text'/> 
+                {/* form validation */}{
                 touched.password && errors.password && (
                     <p className='error'>
                         {
@@ -35,7 +37,12 @@ const UserForm = ({errors, touched, values}) => {
             }
                 <label>
                     Terms of Service
-                    <Field name='terms' placeholder='Terms of Service' type='checkbox'/> {
+                    <Field name='terms' type='checkbox'
+                        checked={
+                            values.terms
+                        }
+                        placeholder='Terms of Service'/> 
+                        {/* form validation */}{
                     touched.terms && errors.terms && (
                         <p className='error'>
                             {
@@ -60,21 +67,16 @@ const BetterUserForm = withFormik({
             password: password || '',
             terms: terms || false
         }; // return
-    },
-    validationSchema: Yup.object().shape({
-        name: Yup.string().required, 
-        email: Yup.string().required, 
-        password: Yup.string().required, 
-        terms: Yup.bool().required
-    }),
-    handleSubmit(values, { setStatus }) {
-        Axios.post('https://reqres.in/api/users')
-        .then(res => {
+    }, // mapPropsToValues
+    validationSchema: Yup.object().shape(
+        {name: Yup.string().required(), email: Yup.string().required(), password: Yup.string().required(), terms: Yup.bool().required()}
+    ),
+    handleSubmit(values, {setStatus}) {
+        Axios.post('https://reqres.in/api/users').then(res => {
             setStatus(res.data);
-        })
-        .catch(err => console.log(err.response));
+        }).catch(err => console.log(err.response));
     }
 
-})(UserForm)//currying
+})(UserForm) // currying
 
 export default BetterUserForm;
