@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
 }
 
 .App-logo {
@@ -9,15 +14,17 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: peachpuff;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  min-width: 100vw;
+  /* display: flex;
+  flex-direction: column; */
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
-}
+  color: slateblue;
+  margin-top: 
+ }
 
 .App-link {
   color: #61dafb;
@@ -31,3 +38,22 @@
     transform: rotate(360deg);
   }
 }
+
+.new-users {
+  color: #61dafb;
+  position: absolute; bottom: 10%; 
+}
+
+.form-header {
+  font-size: 1.5rem;
+}
+
+.error {
+  color:red;
+}
+
+button {
+  border: 2px dotted;
+  background: white;
+}
+
